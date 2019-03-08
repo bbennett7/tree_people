@@ -17,15 +17,15 @@ class TreePeople::CLI
     puts " "
     user_input = gets.chomp.downcase
     puts " "
-    if user_input == ("1" || "location")
+    if user_input == "1" || user_input == "location"
       location
-    elsif user_input == ("2" || "event type")
+    elsif user_input == "2" || user_input == "event type"
       event_type
-    elsif user_input == ("3" || "day of the week")
+    elsif user_input == "3" || user_input == "day of the week"
       day_of_week
-    elsif user_input == ("4" || "time of day")
+    elsif user_input == "4" || user_input == "time of day"
       time_of_day
-    elsif user_input == ("5" || "view all")
+    elsif user_input == "5" || user_input == "view all"
       list_all
     elsif user_input == "exit"
     else
@@ -39,7 +39,7 @@ class TreePeople::CLI
     puts " "
     user_input = gets.chomp.downcase
     puts " "
-    if user_input == ("menu" || "main menu")
+    if user_input == "menu" || user_input == "main menu"
       menu
     elsif user_input == "exit"
     else
