@@ -41,3 +41,39 @@ Shows for the chosen event:
 - Availability: 6 spots open
 - To sign up for this event, please visit: <URL>
 - Type menu to return to the menu, or exit to exit the program.
+
+
+
+
+
+def event_type_options
+  puts "We have the following event types upcoming:"
+  puts "1. Hike"
+  puts "2. Cleanup"
+  puts "Which event type would you like to see upcoming events for?"
+  @event_type_choice = gets.chomp
+end
+
+def day_of_week_options
+  puts "Which day would you like to see upcoming events for?"
+  puts "Monday"
+  puts "Tuesday"
+  puts "Wednesday"
+  @day_choice = gets.chomp
+end
+
+def time_of_day_options
+  puts "Which time would you like to see upcoming events for?"
+  puts "Morning"
+  puts "Afternoon"
+  puts "Evening"
+  @time_choice = gets.chomp
+end
+
+def list_all
+  puts "Here is a list of all upcoming TreePeople events:"
+  puts "1. Event1"
+  puts "2. Event2"
+  puts "Which event would you like to see details for?"
+  @event_choice = gets.chomp
+end

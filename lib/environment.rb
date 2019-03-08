@@ -4,3 +4,4 @@
 
 require_relative "./tree_people/version"
 require_relative "./tree_people/cli"
+require_relative "./tree_people/location"
