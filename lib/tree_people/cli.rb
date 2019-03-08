@@ -13,18 +13,18 @@ class TreePeople::CLI
     puts "   2. View by event type"
     puts "   3. View by day of the week"
     puts "   4. View by time of day"
-    puts "   5. View all upcoming events" #possibly change this to month
+    puts "   5. View all upcoming events"
     puts " "
     user_input = gets.chomp.downcase
     puts " "
     if user_input == ("1" || "location")
       location
     elsif user_input == ("2" || "event type")
-      event_type_options
+      event_type
     elsif user_input == ("3" || "day of the week")
-      day_of_week_options
+      day_of_week
     elsif user_input == ("4" || "time of day")
-      time_of_day_options
+      time_of_day
     elsif user_input == ("5" || "view all")
       list_all
     elsif user_input == "exit"

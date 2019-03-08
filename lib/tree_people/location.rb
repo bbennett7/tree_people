@@ -33,7 +33,7 @@ def location_events #gives a list of events at a certain location
   end
 end
 
-def location_details
+def location_details #gives details on a specific event 
   puts "Which event would you like to see details for?"
   puts " "
   user_input = gets.chomp
