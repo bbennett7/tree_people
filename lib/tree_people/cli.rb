@@ -1,7 +1,9 @@
 #Our CLI Controller
 
 class TreePeople::CLI
+
   def call
+    Scraper.new.make_events
     puts "Welcome to TreePeople! We are excited to have you join our team of volunteers."
     menu
     exit
