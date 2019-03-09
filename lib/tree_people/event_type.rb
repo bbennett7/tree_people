@@ -6,8 +6,10 @@ end
 
 def type_options #gives a list of event types
   puts "We offer the following types of events:"
-  puts "1. Volunteer Events"
-  puts "2. Tours/Hikes"
+  types = Event.all.collect{|event| event.type}.uniq
+  types.each_with_index do |type, i|
+    puts "   #{type}"
+  end
   puts " "
 end
 
