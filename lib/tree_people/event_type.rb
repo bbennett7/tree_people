@@ -39,15 +39,19 @@ end
 def type_details #gives details on a specific event
   puts "Which event would you like to see details for?"
   puts " "
-  user_input = gets.chomp
+  user_input = gets.chomp.to_i
   puts " "
-  if user_input == "1"
-    puts "Here are details for the first event listed"
+  if user_input <= @available_options.count
+    event = @available_options[user_input - 1]
+    puts "#{event.day}, #{event.month} #{event.date} from #{event.start_time} to #{event.end_time}"
+    puts "#{event.name} in #{event.location}"
+    puts "#{event.type}"
     puts " "
-    menu_or_exit
-  elsif user_input == "2"
-    puts "Here are details for the second event listed"
+    puts "#{event.description}"
     puts " "
+    puts "To sign up, please visit TreePeople.org#{event.url}"
+    puts " "
+    @available_options.clear
     menu_or_exit
   else
     puts "That is not a valid selection, please try again."
