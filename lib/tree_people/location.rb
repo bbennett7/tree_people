@@ -7,10 +7,7 @@ end
 def location_options #gives a list of locations
   puts "We have upcoming events at the following locations:"
   locations = Event.all.collect{|event| event.location}.uniq
-  locations.each_with_index do |location, i|
-    puts "   #{location}"
-  end
-  puts " "
+  options(locations)
 end
 
 def location_events #gives a list of events at a certain location

@@ -1,4 +1,4 @@
-def event_type
+def type
   type_options
   type_events
   event_details
@@ -7,10 +7,7 @@ end
 def type_options #gives a list of event types
   puts "We offer the following types of events:"
   types = Event.all.collect{|event| event.type}.uniq
-  types.each_with_index do |type, i|
-    puts "   #{type}"
-  end
-  puts " "
+  options(types)
 end
 
 def type_events #gives a list of events of a certain type

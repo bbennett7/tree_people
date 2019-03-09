@@ -23,7 +23,7 @@ class TreePeople::CLI
     if user_input == "1" || user_input == "location"
       location
     elsif user_input == "2" || user_input == "event type"
-      event_type
+      type
     elsif user_input == "3" || user_input == "day of the week"
       day_of_week
     elsif user_input == "4" || user_input == "time of day"
@@ -35,6 +35,13 @@ class TreePeople::CLI
       puts "That is not a valid selection, please try again."
       menu
     end
+  end
+
+  def options(options_list)
+    options_list.each do |option|
+      puts "   #{option}"
+    end
+    puts " "
   end
 
   def event_details
