@@ -18,15 +18,16 @@ def type_events #gives a list of events of a certain type
   puts " "
   user_input = gets.chomp.downcase
   puts " "
-  if user_input == "volunteer events"
-    puts "We have the following upcoming volunteer events:"
-    puts "1. Volunteer Event 1"
-    puts "2. Volunteer Event 2"
-    puts " "
-  elsif user_input == "tours/hikes"
-    puts "We have the following upcoming tours/hikes:"
-    puts "1. Tours/Hikes Event 1"
-    puts "2. Tours/Hikes Event 2"
+  if Event.all.any?{|event| user_input == event.type.downcase}
+    puts "We have the following upcoming events of that type:"
+    counter = 1
+    Event.all.each do |event|
+      if user_input == event.type.downcase
+        puts "    #{counter}. #{event.day}, #{event.month} #{event.date} - #{event.name}"
+        counter +=1
+        @available_options << event
+      end
+    end
     puts " "
   else
     puts "That is not a valid selection, please try again."
