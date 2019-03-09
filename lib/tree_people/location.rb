@@ -1,7 +1,7 @@
-def choose_location
+def location
   location_options
   location_events
-  location_details
+  event_details
 end
 
 def location_options #gives a list of locations
@@ -33,28 +33,5 @@ def location_events #gives a list of events at a certain location
     puts "That is not a valid selection, please try again."
     puts " "
     location_events
-  end
-end
-
-def location_details #gives details on a specific event
-  puts "Which event would you like to see details for?"
-  puts " "
-  user_input = gets.chomp.to_i
-  puts " "
-  if user_input <= @available_options.count
-    event = @available_options[user_input - 1]
-    puts "#{event.day}, #{event.month} #{event.date} from #{event.start_time} to #{event.end_time}"
-    puts "#{event.name} in #{event.location}"
-    puts "#{event.type}"
-    puts " "
-    puts "#{event.description}"
-    puts " "
-    puts "To sign up, please visit TreePeople.org#{event.url}"
-    puts " "
-    @available_options.clear
-    menu_or_exit
-  else
-    puts "That is not a valid selection, please try again."
-    location_details
   end
 end

@@ -14,14 +14,14 @@ class TreePeople::CLI
     puts "Please select from the following list to view different TreePeople events, or type exit."
     puts "   1. View by location"
     puts "   2. View by event type"
-    puts "   3. View by day of the week"
-    puts "   4. View by time of day"
-    puts "   5. View all upcoming events"
+  # puts "   3. View by day of the week"
+  # puts "   4. View by time of day"
+  #  puts "   5. View all upcoming events"
     puts " "
     user_input = gets.chomp.downcase
     puts " "
     if user_input == "1" || user_input == "location"
-      choose_location
+      location
     elsif user_input == "2" || user_input == "event type"
       event_type
     elsif user_input == "3" || user_input == "day of the week"
@@ -34,6 +34,29 @@ class TreePeople::CLI
     else
       puts "That is not a valid selection, please try again."
       menu
+    end
+  end
+
+  def event_details
+    puts "Which event would you like to see details for?"
+    puts " "
+    user_input = gets.chomp.to_i
+    puts " "
+    if user_input <= @available_options.count
+      event = @available_options[user_input - 1]
+      puts "#{event.day}, #{event.month} #{event.date} from #{event.start_time} to #{event.end_time}"
+      puts "#{event.name} in #{event.location}"
+      puts "#{event.type}"
+      puts " "
+      puts "#{event.description}"
+      puts " "
+      puts "To sign up, please visit TreePeople.org#{event.url}"
+      puts " "
+      @available_options.clear
+      menu_or_exit
+    else
+      puts "That is not a valid selection, please try again."
+      location_details
     end
   end
 
