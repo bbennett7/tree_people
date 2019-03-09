@@ -1,9 +1,10 @@
 #Our CLI Controller
 
 class TreePeople::CLI
-
+  attr_accessor :available_options
   def call
     Scraper.new.make_events
+    @available_options = []
     puts "Welcome to TreePeople! We are excited to have you join our team of volunteers."
     menu
     exit
@@ -20,7 +21,7 @@ class TreePeople::CLI
     user_input = gets.chomp.downcase
     puts " "
     if user_input == "1" || user_input == "location"
-      location
+      choose_location
     elsif user_input == "2" || user_input == "event type"
       event_type
     elsif user_input == "3" || user_input == "day of the week"
