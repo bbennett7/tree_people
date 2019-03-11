@@ -32,7 +32,7 @@ class TreePeople::CLI
       list_all
     elsif user_input == "exit"
     else
-      invalid_selection 
+      invalid_selection
       menu
     end
   end
@@ -48,8 +48,16 @@ class TreePeople::CLI
     puts "That is not a valid selection, please try again."
     puts " "
   end
-  def events_list#(attribute)
 
+  def events_list#(view_option)
+    puts " "
+    user_input = gets.chomp.downcase
+    puts " "
+#    if view_option == "location"
+
+#    elsif view_option == "type"
+
+#    end 
   end
 
   def event_details

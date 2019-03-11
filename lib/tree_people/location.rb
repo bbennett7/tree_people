@@ -12,22 +12,24 @@ end
 
 def location_events #gives a list of events at a certain location
   puts "Which location would you like to see upcoming events for?"
+#  events_list
   puts " "
   user_input = gets.chomp.downcase
   puts " "
   if Event.all.any?{|event| user_input == event.location.downcase}
-    puts "We have the following upcoming events at your selected location:"
-#    counter = 1
-#    Event.all.each do |event|
-#      if user_input == event.location.downcase
-#        puts "    #{counter}. #{event.day}, #{event.month} #{event.date} - #{event.name}"
-#        @available_options << event
-#        counter +=1
-#      end
-#    end
-#    puts " "
+    puts "We have the following upcoming events for that selection:"
   else
     invalid_selection
     location_events
   end
+
+  counter = 1
+  Event.all.each do |event|
+    if user_input == event.location.downcase
+      puts "    #{counter}. #{event.day}, #{event.month} #{event.date} - #{event.name}"
+      @available_options << event
+      counter +=1
+    end
+  end
+  puts " "
 end
