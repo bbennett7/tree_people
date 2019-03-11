@@ -40,7 +40,7 @@ class Scraper
 
       details_page = get_event_page(event.url)
       event.description = details_page.css(".node-event").css("p").text.strip
-    # event.spots_open =
+      event.spots_open = details_page.css(".node-event").text.split("There are")[-1].strip
 
       counter += 1
       odd_number += 2
@@ -63,7 +63,7 @@ class Scraper
 
         details_page = get_event_page(event.url)
         event.description = details_page.css(".node-event").css("p").text.strip
-      # event.spots_open =
+        event.spots_open = details_page.css(".node-event").text.split("There are")[-1].strip
 
         ev_counter += 1
         even_number += 2
@@ -80,3 +80,5 @@ class Scraper
     end
   end
 end
+
+ # Scraper.new.print_events
