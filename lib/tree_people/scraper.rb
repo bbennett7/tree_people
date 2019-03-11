@@ -40,7 +40,11 @@ class Scraper
 
       details_page = get_event_page(event.url)
       event.description = details_page.css(".node-event").css("p").text.strip
-      event.spots_open = details_page.css(".node-event").text.split("There are")[-1].strip
+      if details_page.css(".node-event").text.end_with?("Event capacity information is updated every hour.")
+        event.spots_open = details_page.css(".node-event").text.split("There are")[-1].strip
+      else
+        event.spots_open = ""
+      end
 
       counter += 1
       odd_number += 2
@@ -63,7 +67,11 @@ class Scraper
 
         details_page = get_event_page(event.url)
         event.description = details_page.css(".node-event").css("p").text.strip
-        event.spots_open = details_page.css(".node-event").text.split("There are")[-1].strip
+        if details_page.css(".node-event").text.end_with?("Event capacity information is updated every hour.")
+          event.spots_open = details_page.css(".node-event").text.split("There are")[-1].strip
+        else
+          event.spots_open = ""
+        end
 
         ev_counter += 1
         even_number += 2
