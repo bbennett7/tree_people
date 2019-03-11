@@ -40,7 +40,7 @@ class Scraper
 
       details_page = get_event_page(event.url)
       event.description = details_page.css(".node-event").css("p").text.strip
-      if details_page.css(".node-event").text.end_with?("Event capacity information is updated every hour.")
+      if details_page.css(".node-event").text.strip.end_with?("Event capacity information is updated every hour.")
         event.spots_open = details_page.css(".node-event").text.split("There are")[-1].strip
       else
         event.spots_open = ""
@@ -67,7 +67,7 @@ class Scraper
 
         details_page = get_event_page(event.url)
         event.description = details_page.css(".node-event").css("p").text.strip
-        if details_page.css(".node-event").text.end_with?("Event capacity information is updated every hour.")
+        if details_page.css(".node-event").text.strip.end_with?("Event capacity information is updated every hour.")
           event.spots_open = details_page.css(".node-event").text.split("There are")[-1].strip
         else
           event.spots_open = ""
@@ -85,8 +85,9 @@ class Scraper
       puts "#{event.day}, #{event.month} #{event.date}, from #{event.start_time} to #{event.end_time} - #{event.name} in #{event.location} - #{event.type}"
       puts " "
       puts " "
+    puts "#{event.spots_open}"
     end
   end
 end
 
- # Scraper.new.print_events
+#  Scraper.new.print_events

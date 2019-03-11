@@ -57,8 +57,14 @@ class TreePeople::CLI
       puts " "
       puts "#{event.description}"
       puts " "
-      puts "To sign up, please visit TreePeople.org#{event.url}"
-      puts " "
+      if event.spots_open == ""
+      elsif event.spots_open.start_with?("1 ")
+        puts "There is 1 space available. Event capacity information is updated every hour. To sign up, please visit TreePeople.org#{event.url}"
+        puts " "
+      else
+        puts "There are #{event.spots_open} To sign up, please visit TreePeople.org#{event.url}"
+        puts " "
+      end
       @available_options.clear
       menu_or_exit
     else
