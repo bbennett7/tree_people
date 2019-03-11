@@ -17,18 +17,17 @@ def location_events #gives a list of events at a certain location
   puts " "
   if Event.all.any?{|event| user_input == event.location.downcase}
     puts "We have the following upcoming events at your selected location:"
-    counter = 1
-    Event.all.each do |event|
-      if user_input == event.location.downcase
-        puts "    #{counter}. #{event.day}, #{event.month} #{event.date} - #{event.name}"
-        counter +=1
-        @available_options << event
-      end
-    end
-    puts " "
+#    counter = 1
+#    Event.all.each do |event|
+#      if user_input == event.location.downcase
+#        puts "    #{counter}. #{event.day}, #{event.month} #{event.date} - #{event.name}"
+#        @available_options << event
+#        counter +=1
+#      end
+#    end
+#    puts " "
   else
-    puts "That is not a valid selection, please try again."
-    puts " "
+    invalid_selection
     location_events
   end
 end

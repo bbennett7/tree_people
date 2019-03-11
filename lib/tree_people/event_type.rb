@@ -21,14 +21,13 @@ def type_events #gives a list of events of a certain type
     Event.all.each do |event|
       if user_input == event.type.downcase
         puts "    #{counter}. #{event.day}, #{event.month} #{event.date} - #{event.name}"
-        counter +=1
         @available_options << event
+        counter +=1
       end
     end
     puts " "
   else
-    puts "That is not a valid selection, please try again."
-    puts " "
+    invalid_selection
     type_events
   end
 end
