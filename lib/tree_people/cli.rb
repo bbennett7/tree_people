@@ -13,14 +13,14 @@ class TreePeople::CLI
 
   def menu
     puts "Please select from the following list to view different TreePeople events, or type exit."
-    puts "   1. View by location"
-    puts "   2. View by category"
-    puts "   3. View by day of the week"
-    puts "   4. View by time of day"
-    puts "   5. View all upcoming events"
-    puts " "
+    puts "  1. View by location"
+    puts "  2. View by category"
+    puts "  3. View by day of the week"
+    puts "  4. View by time of day"
+    puts "  5. View all upcoming events"
+    space
     user_input = gets.chomp.downcase
-    puts " "
+    space
     if user_input == "1" || user_input == "location"
       location
     elsif user_input == "2" || user_input == "category"
@@ -38,26 +38,29 @@ class TreePeople::CLI
     end
   end
 
+  def space
+    puts " "
+  end
 
   def options(options_list)
     options_list.each do |option|
-      puts "   #{option}"
+      puts "  #{option}"
     end
-    puts " "
+    space
   end
 
 
   def invalid_selection
     puts "That is not a valid selection, please try again."
-    puts " "
+    space
   end
 
 
   def choose_view_option(attribute)
     puts "Which #{attribute} would you like to see upcoming events for?"
-    puts " "
+    space
     user_input = gets.chomp.downcase
-    puts " "
+    space
     if Event.all.any?{|event| user_input == event.location.downcase || user_input == event.category.downcase || user_input == event.day.downcase || user_input == event.time_of_day.downcase}
       puts "We have the following upcoming events:"
     else
@@ -82,33 +85,35 @@ class TreePeople::CLI
   def list_available_events
     counter = 1
     @available_options.each do |event|
-      puts "    #{counter}. #{event.day}, #{event.month} #{event.date} - #{event.name}"
+      puts "  #{counter}. #{event.day}, #{event.month} #{event.date} - #{event.name}"
       counter +=1
     end
   end
 
 
   def event_details
-    puts " "
+    space
     puts "Which event would you like to see details for?"
-    puts " "
+    space
     user_input = gets.chomp.to_i
-    puts " "
+    space
     if user_input <= @available_options.count
       event = @available_options[user_input - 1]
       puts "#{event.day}, #{event.month} #{event.date} from #{event.start_time} to #{event.end_time}"
       puts "#{event.name} in #{event.location}"
       puts "#{event.category}"
-      puts " "
+      space
       puts "#{event.description}"
-      puts " "
+      space
       if event.spots_open == ""
       elsif event.spots_open.start_with?("1 ")
-        puts "There is 1 space available. Event capacity information is updated every hour. To sign up, please visit TreePeople.org#{event.url}"
-        puts " "
+        puts "There is 1 space available. Event capacity information is updated every hour."
+        puts "To sign up, please visit TreePeople.org#{event.url}"
+        space
       else
-        puts "There are #{event.spots_open} To sign up, please visit TreePeople.org#{event.url}"
-        puts " "
+        puts "There are #{event.spots_open}"
+        puts "To sign up, please visit TreePeople.org#{event.url}"
+        space
       end
       @available_options.clear
       menu_or_exit
@@ -121,9 +126,9 @@ class TreePeople::CLI
 
   def menu_or_exit
     puts "Please type menu to return to the main menu, or exit to exit the program."
-    puts " "
+    space
     user_input = gets.chomp.downcase
-    puts " "
+    space
     if user_input == "menu" || user_input == "main menu"
       menu
     elsif user_input == "exit"
