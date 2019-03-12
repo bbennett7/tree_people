@@ -14,7 +14,7 @@ A command line interface to view and search through the next 20 TreePeople event
 
 user types tree_people
 
-Gives options to sort through a list of upcoming events.
+Gives following view options:
 
 1. View events by location
 2. View events by type

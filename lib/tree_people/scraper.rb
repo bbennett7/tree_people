@@ -38,6 +38,14 @@ class Scraper
       event.category = get_odd_events.css(".views-field-field-event-category")[counter].text.strip
       event.url = get_odd_events.css(".views-field-title")[counter].css("a").first["href"]
 
+      if event.start_time.end_with?("am")
+        event.time_of_day = "Morning"
+      elsif event.start_time.start_with?("12:", "1:", "2:", "3:", "4:")
+        event.time_of_day = "Afternoon"
+      else
+        event.time_of_day = "Evening"
+      end
+
       details_page = get_event_page(event.url)
       event.description = details_page.css(".node-event").css("p").text.strip
       if details_page.css(".node-event").text.strip.end_with?("Event capacity information is updated every hour.")
@@ -64,6 +72,14 @@ class Scraper
         event.end_time = get_even_events.css(".date-display-end")[ev_counter].text.strip
         event.category = get_even_events.css(".views-field-field-event-category")[ev_counter].text.strip
         event.url = get_even_events.css(".views-field-title")[ev_counter].css("a").first["href"]
+
+        if event.start_time.end_with?("am")
+          event.time_of_day = "Morning"
+        elsif event.start_time.start_with?("12:", "1:", "2:", "3:", "4:")
+          event.time_of_day = "Afternoon"
+        else
+          event.time_of_day = "Evening"
+        end
 
         details_page = get_event_page(event.url)
         event.description = details_page.css(".node-event").css("p").text.strip

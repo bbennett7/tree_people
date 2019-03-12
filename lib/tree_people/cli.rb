@@ -17,7 +17,7 @@ class TreePeople::CLI
     puts "   1. View by location"
     puts "   2. View by category"
     puts "   3. View by day of the week"
-  # puts "   4. View by time of day"
+    puts "   4. View by time of day"
   #  puts "   5. View all upcoming events"
     puts " "
     user_input = gets.chomp.downcase
@@ -26,9 +26,9 @@ class TreePeople::CLI
       location
     elsif user_input == "2" || user_input == "category"
       category
-    elsif user_input == "3" || user_input == "day of the week"
+    elsif user_input == "3" || user_input == "day of the week" || user_input == "day"
       day_of_week
-    elsif user_input == "4" || user_input == "time of day"
+    elsif user_input == "4" || user_input == "time of day" || user_input == "time"
       time_of_day
     elsif user_input == "5" || user_input == "view all"
       list_all
@@ -59,7 +59,7 @@ class TreePeople::CLI
     puts " "
     user_input = gets.chomp.downcase
     puts " "
-    if Event.all.any?{|event| user_input == event.location.downcase || user_input == event.category.downcase || user_input == event.day.downcase}
+    if Event.all.any?{|event| user_input == event.location.downcase || user_input == event.category.downcase || user_input == event.day.downcase || user_input == event.time_of_day.downcase}
       puts "We have the following upcoming events:"
     else
       invalid_selection
@@ -72,6 +72,8 @@ class TreePeople::CLI
       elsif user_input == event.category.downcase
         @available_options << event
       elsif user_input == event.day.downcase
+        @available_options << event
+      elsif user_input == event.time_of_day.downcase
         @available_options << event
       end
     end
