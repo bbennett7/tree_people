@@ -58,42 +58,42 @@ class Scraper
       odd_number += 2
     end
 
-      ev_counter = 0
-      even_number = 2
-      self.get_even_events.each do |event|
-        event = Event.new
-        event.number = even_number
-        event.month = get_page.css(".views-table").css("caption").text.strip
-        event.date = get_even_events.css(".views-field-field-date-2").css(".date-display-single")[ev_counter].text.strip
-        event.name = get_even_events.css(".views-field-title").css("a")[ev_counter].text.strip
-        event.location = get_even_events.css(".views-field-field-neighborhood")[ev_counter].text.strip
-        event.day = get_even_events.css(".views-field-field-day-of-week")[ev_counter].text.strip
-        event.start_time = get_even_events.css(".date-display-start")[ev_counter].text.strip
-        event.end_time = get_even_events.css(".date-display-end")[ev_counter].text.strip
-        event.category = get_even_events.css(".views-field-field-event-category")[ev_counter].text.strip
-        event.url = get_even_events.css(".views-field-title")[ev_counter].css("a").first["href"]
+    ev_counter = 0
+    even_number = 2
+    self.get_even_events.each do |event|
+      event = Event.new
+      event.number = even_number
+      event.month = get_page.css(".views-table").css("caption").text.strip
+      event.date = get_even_events.css(".views-field-field-date-2").css(".date-display-single")[ev_counter].text.strip
+      event.name = get_even_events.css(".views-field-title").css("a")[ev_counter].text.strip
+      event.location = get_even_events.css(".views-field-field-neighborhood")[ev_counter].text.strip
+      event.day = get_even_events.css(".views-field-field-day-of-week")[ev_counter].text.strip
+      event.start_time = get_even_events.css(".date-display-start")[ev_counter].text.strip
+      event.end_time = get_even_events.css(".date-display-end")[ev_counter].text.strip
+      event.category = get_even_events.css(".views-field-field-event-category")[ev_counter].text.strip
+      event.url = get_even_events.css(".views-field-title")[ev_counter].css("a").first["href"]
 
-        if event.start_time.end_with?("am")
-          event.time_of_day = "Morning"
-        elsif event.start_time.start_with?("12:", "1:", "2:", "3:", "4:")
-          event.time_of_day = "Afternoon"
-        else
-          event.time_of_day = "Evening"
-        end
-
-        details_page = get_event_page(event.url)
-        event.description = details_page.css(".node-event").css("p").text.strip
-        if details_page.css(".node-event").text.strip.end_with?("Event capacity information is updated every hour.")
-          event.spots_open = details_page.css(".node-event").text.split("There are")[-1].strip
-        else
-          event.spots_open = ""
-        end
-
-        ev_counter += 1
-        even_number += 2
+      if event.start_time.end_with?("am")
+        event.time_of_day = "Morning"
+      elsif event.start_time.start_with?("12:", "1:", "2:", "3:", "4:")
+        event.time_of_day = "Afternoon"
+      else
+        event.time_of_day = "Evening"
       end
-      Event.all.sort_by!{|event| event.number}
+
+      details_page = get_event_page(event.url)
+      event.description = details_page.css(".node-event").css("p").text.strip
+      if details_page.css(".node-event").text.strip.end_with?("Event capacity information is updated every hour.")
+        event.spots_open = details_page.css(".node-event").text.split("There are")[-1].strip
+      else
+        event.spots_open = ""
+      end
+
+      ev_counter += 1
+      even_number += 2
     end
+    Event.all.sort_by!{|event| event.number}
+  end
 
   def print_events(attribute)
     self.make_events

@@ -5,7 +5,6 @@ class TreePeople::CLI
   def call
     Scraper.new.make_events
     @available_options = []
-    @view_options = []
     puts "Welcome to TreePeople! We are excited to have you join our team of volunteers."
     menu
     exit
