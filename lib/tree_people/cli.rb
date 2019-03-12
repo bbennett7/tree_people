@@ -18,7 +18,7 @@ class TreePeople::CLI
     puts "   2. View by category"
     puts "   3. View by day of the week"
     puts "   4. View by time of day"
-  #  puts "   5. View all upcoming events"
+    puts "   5. View all upcoming events"
     puts " "
     user_input = gets.chomp.downcase
     puts " "
