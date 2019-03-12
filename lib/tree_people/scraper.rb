@@ -35,7 +35,7 @@ class Scraper
       event.day = get_odd_events.css(".views-field-field-day-of-week")[counter].text.strip
       event.start_time = get_odd_events.css(".date-display-start")[counter].text.strip
       event.end_time = get_odd_events.css(".date-display-end")[counter].text.strip
-      event.type = get_odd_events.css(".views-field-field-event-category")[counter].text.strip
+      event.category = get_odd_events.css(".views-field-field-event-category")[counter].text.strip
       event.url = get_odd_events.css(".views-field-title")[counter].css("a").first["href"]
 
       details_page = get_event_page(event.url)
@@ -62,7 +62,7 @@ class Scraper
         event.day = get_even_events.css(".views-field-field-day-of-week")[ev_counter].text.strip
         event.start_time = get_even_events.css(".date-display-start")[ev_counter].text.strip
         event.end_time = get_even_events.css(".date-display-end")[ev_counter].text.strip
-        event.type = get_even_events.css(".views-field-field-event-category")[ev_counter].text.strip
+        event.category = get_even_events.css(".views-field-field-event-category")[ev_counter].text.strip
         event.url = get_even_events.css(".views-field-title")[ev_counter].css("a").first["href"]
 
         details_page = get_event_page(event.url)
@@ -79,15 +79,20 @@ class Scraper
       Event.all.sort_by!{|event| event.number}
     end
 
-  def print_events
+  def print_events(attribute)
     self.make_events
     Event.all.each do |event|
-      puts "#{event.day}, #{event.month} #{event.date}, from #{event.start_time} to #{event.end_time} - #{event.name} in #{event.location} - #{event.type}"
-      puts " "
-      puts " "
-    puts "#{event.spots_open}"
+    #  puts "#{event.day}, #{event.month} #{event.date}, from #{event.start_time} to #{event.end_time} - #{event.name} in #{event.location} - #{event.type}"
+    #  puts " "
+    #  puts " "
+    #  puts "#{event.spots_open}"
+      if attribute == "location"
+        puts "#{event.location}"
+      elsif attribute == "category"
+        puts "#{event.category}"
+      end
     end
   end
 end
 
-#  Scraper.new.print_events
+#  Scraper.new.print_events("category")
