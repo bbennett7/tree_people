@@ -38,22 +38,6 @@ class Scraper
       event.category = get_odd_events.css(".views-field-field-event-category")[counter].text.strip
       event.url = get_odd_events.css(".views-field-title")[counter].css("a").first["href"]
 
-      if event.start_time.end_with?("am")
-        event.time_of_day = "Morning"
-      elsif event.start_time.start_with?("12:", "1:", "2:", "3:", "4:")
-        event.time_of_day = "Afternoon"
-      else
-        event.time_of_day = "Evening"
-      end
-
-      details_page = get_event_page(event.url)
-      event.description = details_page.css(".node-event").css("p").text.strip
-      if details_page.css(".node-event").text.strip.end_with?("Event capacity information is updated every hour.")
-        event.spots_open = details_page.css(".node-event").text.split("There are")[-1].strip
-      else
-        event.spots_open = ""
-      end
-
       counter += 1
       odd_number += 2
     end
@@ -73,6 +57,11 @@ class Scraper
       event.category = get_even_events.css(".views-field-field-event-category")[ev_counter].text.strip
       event.url = get_even_events.css(".views-field-title")[ev_counter].css("a").first["href"]
 
+      ev_counter += 1
+      even_number += 2
+    end
+
+    Event.all.each do |event|
       if event.start_time.end_with?("am")
         event.time_of_day = "Morning"
       elsif event.start_time.start_with?("12:", "1:", "2:", "3:", "4:")
@@ -88,27 +77,8 @@ class Scraper
       else
         event.spots_open = ""
       end
-
-      ev_counter += 1
-      even_number += 2
     end
+
     Event.all.sort_by!{|event| event.number}
   end
-
-  def print_events(attribute)
-    self.make_events
-    Event.all.each do |event|
-    #  puts "#{event.day}, #{event.month} #{event.date}, from #{event.start_time} to #{event.end_time} - #{event.name} in #{event.location} - #{event.type}"
-    #  puts " "
-    #  puts " "
-    #  puts "#{event.spots_open}"
-      if attribute == "location"
-        puts "#{event.location}"
-      elsif attribute == "category"
-        puts "#{event.category}"
-      end
-    end
-  end
-end
-
-#  Scraper.new.print_events("category")
+end 
