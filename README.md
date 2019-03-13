@@ -1,8 +1,8 @@
 # TreePeople
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/tree_people`. To experiment with that code, run `bin/console` for an interactive prompt.
+The tree_people gem allows users to navigate through the next 20 events that TreePeople is having. Users can view events by location, category (or type of event), the day of the week the event is being held on, the time of day the event starts (morning, afternoon, or evening), or the user can view all of the next 20 events being held by TreePeople.
 
-TODO: Delete this and the text above, and describe your gem
+Users can then select a specific event to get detailed information on it, including a brief description and how many spots are still available, as well as the URL to sign up.
 
 ## Installation
 

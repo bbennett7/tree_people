@@ -30,7 +30,7 @@ class TreePeople::CLI
       day_of_week
     elsif user_input == "4" || user_input == "time of day" || user_input == "time"
       time_of_day
-    elsif user_input == "5" || user_input == "view all"
+    elsif user_input == "5" || user_input == "view all" || user_input == "all"
       list_all
     elsif user_input == "exit"
     else
@@ -53,7 +53,7 @@ class TreePeople::CLI
     space
     user_input = gets.chomp.downcase
     space
-    if Event.all.any?{|event| user_input == event.location.downcase || event.category.downcase || event.day.downcase || event.time_of_day.downcase}
+    if Event.all.any?{|event| user_input == event.location.downcase || user_input == event.category.downcase || user_input == event.day.downcase || user_input == event.time_of_day.downcase}
       puts "We have the following upcoming events:"
     else
       invalid_selection

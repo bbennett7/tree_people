@@ -1,6 +1,6 @@
 def list_all
   get_all_events
-  list_available_events
+  list_selection_events
   event_details
 end
 
