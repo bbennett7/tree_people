@@ -6,7 +6,7 @@ def day_of_week
 end
 
 def options_for_day
-  puts "We have upcoming events on the following days:"
+  puts "We have upcoming events on the following days:".colorize(:light_blue)
   days = Event.all.collect{|event| event.day}.uniq
   options(days)
 end

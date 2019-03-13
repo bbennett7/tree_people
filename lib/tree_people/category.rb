@@ -6,7 +6,7 @@ def category
 end
 
 def options_for_categories
-  puts "We offer the following types of events:"
+  puts "We offer the following types of events:".colorize(:light_blue)
   categories = Event.all.collect{|event| event.category}.uniq
   options(categories)
 end

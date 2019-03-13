@@ -1,6 +1,7 @@
 require "pry"
 require "nokogiri"
 require "open-uri"
+require "colorize"
 
 require "./lib/tree_people/event"
 
@@ -81,4 +82,4 @@ class Scraper
 
     Event.all.sort_by!{|event| event.number}
   end
-end 
+end

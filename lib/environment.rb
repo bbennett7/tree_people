@@ -3,6 +3,7 @@
 require 'pry'
 require 'nokogiri'
 require 'open-uri'
+require 'colorize'
 
 require_relative "./tree_people/version"
 require_relative "./tree_people/cli"
