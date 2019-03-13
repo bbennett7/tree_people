@@ -1,7 +1,7 @@
 def day_of_week
   options_for_day
-  choose_view_option("day")
-  list_available_events
+  select_option("day")
+  list_selection_events
   event_details
 end
 

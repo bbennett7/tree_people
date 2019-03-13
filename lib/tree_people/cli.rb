@@ -2,6 +2,7 @@
 
 class TreePeople::CLI
   attr_accessor :available_options
+
   def call
     Scraper.new.make_events
     @available_options = []
@@ -12,7 +13,7 @@ class TreePeople::CLI
 
 
   def menu
-    puts "Please select from the following list to view different TreePeople events, or type exit."
+    puts "Please select from the following list to view upcoming TreePeople events, or type exit."
     puts "  1. View by location"
     puts "  2. View by category"
     puts "  3. View by day of the week"
@@ -38,9 +39,6 @@ class TreePeople::CLI
     end
   end
 
-  def space
-    puts " "
-  end
 
   def options(options_list)
     options_list.each do |option|
@@ -50,24 +48,17 @@ class TreePeople::CLI
   end
 
 
-  def invalid_selection
-    puts "That is not a valid selection, please try again."
-    space
-  end
-
-
-  def choose_view_option(attribute)
+  def select_option(attribute)
     puts "Which #{attribute} would you like to see upcoming events for?"
     space
     user_input = gets.chomp.downcase
     space
-    if Event.all.any?{|event| user_input == event.location.downcase || user_input == event.category.downcase || user_input == event.day.downcase || user_input == event.time_of_day.downcase}
+    if Event.all.any?{|event| user_input == event.location.downcase || event.category.downcase || event.day.downcase || event.time_of_day.downcase}
       puts "We have the following upcoming events:"
     else
       invalid_selection
-      choose_view_option("#{attribute}")
+      select_option("#{attribute}")
     end
-
     Event.all.each do |event|
       if user_input == event.location.downcase
         @available_options << event
@@ -82,7 +73,7 @@ class TreePeople::CLI
   end
 
 
-  def list_available_events
+  def list_selection_events
     counter = 1
     @available_options.each do |event|
       puts "  #{counter}. #{event.day}, #{event.month} #{event.date} - #{event.name}"
@@ -119,8 +110,19 @@ class TreePeople::CLI
       menu_or_exit
     else
       invalid_selection
-      location_details
+      event_details
     end
+  end
+
+
+  def space
+    puts " "
+  end
+
+
+  def invalid_selection
+    puts "That is not a valid selection, please try again."
+    space
   end
 
 

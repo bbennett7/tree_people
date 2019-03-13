@@ -1,7 +1,7 @@
 def time_of_day
   options_for_time
-  choose_view_option("time of day")
-  list_available_events
+  select_option("time of day")
+  list_selection_events
   event_details
 end
 

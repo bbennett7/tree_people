@@ -1,7 +1,7 @@
 def category
   options_for_categories
-  choose_view_option("category")
-  list_available_events  
+  select_option("category")
+  list_selection_events
   event_details
 end
 

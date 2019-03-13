@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby  #lets operating system know to interpret file through ruby
 
 require './lib/environment'
+
 TreePeople::CLI.new.call

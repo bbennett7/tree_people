@@ -1,7 +1,7 @@
 def location
   options_for_locations
-  choose_view_option("location")
-  list_available_events  
+  select_option("location")
+  list_selection_events
   event_details
 end
 
