@@ -6,23 +6,11 @@ Users can then select a specific event to get detailed information on it, includ
 
 ## Installation
 
-Add this line to your application's Gemfile:
-
-```ruby
-gem 'tree_people'
-```
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install tree_people
+gem install tree_people
 
 ## Usage
 
-TODO: Write usage instructions here
+Type "ruby ./bin/tree_people" and follow the prompts.
 
 ## Development
 
