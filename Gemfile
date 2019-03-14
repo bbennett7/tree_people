@@ -1,14 +1,7 @@
-require_relative "./lib/tree_people/version"
+source "https://rubygems.org"
 
-Gem::Specification.new do |s|
-  s.name        = "tree_people"
-  s.version     = TreePeople::VERSION
-  s.date        = "2019-03-12"
-  s.summary     = "Navigate through upcoming events with TreePeople"
-  s.description = "A tool that allos users to select different criteria to view upcoming TreePeople events"
-  s.authors     = ["Bryn Bennett"]
-  s.email       = "bryn.bennett@gmail.com"
-  s.files       = ["lib/tree_people"]
-  s.homepage    = "http://rubygems.org/gems/tree_people"
-  s.license     = 'MIT'
-end
+gem "bundler", "~> 2.0"
+gem "rake", "~> 10.0"
+gem "rspec", "~> 3.0"
+gem "nokogiri", "~> 1.0"
+gem "pry", "~> 0.12"

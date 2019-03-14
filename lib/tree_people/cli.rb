@@ -38,7 +38,7 @@ class TreePeople::CLI
     end
   end
 
-
+  
   def options(options_list)
     options_list.each do |option|
       puts "  #{option}".colorize(:light_blue)

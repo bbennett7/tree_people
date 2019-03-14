@@ -10,7 +10,7 @@ gem install tree_people
 
 ## Usage
 
-Type "ruby ./bin/tree_people" and follow the prompts.
+Type "ruby ./bin/tree_people" into your terminal, and then follow the prompts.
 
 ## Development
 
