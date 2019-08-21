@@ -4,6 +4,7 @@ class TreePeople::CLI
   attr_accessor :available_options
 
   def call
+    #self
     Scraper.new.make_events
     @available_options = []
     puts "Welcome to TreePeople! We are excited to have you join our team of volunteers.".colorize(:light_blue)
@@ -38,7 +39,7 @@ class TreePeople::CLI
     end
   end
 
-  
+
   def options(options_list)
     options_list.each do |option|
       puts "  #{option}".colorize(:light_blue)
@@ -141,6 +142,7 @@ class TreePeople::CLI
 
 
   def exit
+    binding.pry
     puts "Thank you for considering TreePeople. We hope to see you at an event soon!".colorize(:light_blue)
   end
 end
